@@ -44,7 +44,7 @@ class _PriceScreenState extends State<PriceScreen> {
   }
 
   CupertinoPicker iOSPicker() {
-    CupertinoPicker(
+    return CupertinoPicker(
       children: currenciesList.map((String currency) {
         return Text(currency);
       }).toList(),
@@ -53,14 +53,6 @@ class _PriceScreenState extends State<PriceScreen> {
         selectedCurrency = selectedIndex as String;
       },
     );
-  }
-
-  Widget getPicker() {
-    if (Platform.isAndroid) {
-      return androidDropDown();
-    } else if (Platform.isIOS) {
-      return iOSPicker();
-    }
   }
 
   @override
@@ -99,7 +91,7 @@ class _PriceScreenState extends State<PriceScreen> {
             alignment: Alignment.center,
             padding: EdgeInsets.only(bottom: 30.0),
             color: Colors.lightBlue,
-            child: getPicker(),
+            child: Platform.isAndroid ? androidDropDown() : iOSPicker(),
           ),
         ],
       ),
